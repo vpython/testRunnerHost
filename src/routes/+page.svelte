@@ -1,7 +1,7 @@
 
 <script lang="ts">
 
-    import {PUBLIC_RUNNER_GUEST_URL} from '$env/static/public'
+    import {env} from '$env/dynamic/public'
 
     type RSEvent = {
         type: string,
@@ -32,7 +32,8 @@
         }
 
     onMount(() => {
-        iframe.src=PUBLIC_RUNNER_GUEST_URL
+        console.log("guest URL:" + env.PUBLIC_RUNNER_GUEST_URL)
+        iframe.src=env.PUBLIC_RUNNER_GUEST_URL
         window.onmessage = (event) => {
             let data = JSON.parse(event.data)
             console.log("Got data:", JSON.stringify(data))
